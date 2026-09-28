@@ -1,0 +1,9 @@
+{
+  "name": "party-go-2016",
+  "version": "3.0.0",
+  "private": true,
+  "description": "PARTY GO 2016 — локальная игра для вечеринки",
+  "main": "server.js",
+  "scripts": {"start":"node server.js","generate-qr":"node scripts/generate-qr.js"},
+  "dependencies": {"express":"^5.1.0","jsqr":"^1.4.0","qrcode":"^1.5.4","socket.io":"^4.8.1","three":"^0.180.0"}
+}

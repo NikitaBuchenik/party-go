@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#000000">
+<title>PARTY GO // СКАНЕР</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="play">
+<video id="qrVideo" class="qr-video" autoplay muted playsinline></video>
+<canvas id="qrCanvas" hidden></canvas>
+<div id="scannerFrame" class="scanner-frame hidden" aria-hidden="true"><span></span></div>
+<button id="collectionPill" class="collection-pill" type="button" aria-label="Открыть коллекцию">👾 <span id="collectionCount">0/0</span></button>
+<div id="scanStatus" class="scan-status">Нажми «Сканировать», чтобы начать</div>
+<button id="scanButton" class="scan-button">📷 СКАНИРОВАТЬ</button>
+<section id="found" class="found hidden">
+  <img id="creatureImage" class="found-image" alt="">
+  <div class="found-name" id="creatureName"></div>
+  <div class="found-xp" id="gainXp"></div>
+  <div class="found-effect" id="foundEffect"></div>
+  <button id="catchBtn">ПОЙМАТЬ</button>
+  <button id="scanAgain" class="secondary">ИСКАТЬ ДАЛЬШЕ</button>
+</section>
+<div id="toast" class="toast hidden"></div>
+<script src="/vendor/jsqr/dist/jsQR.js"></script>
+<script src="/js/play.js"></script>
+</body>
+</html>

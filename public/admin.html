@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Админка // PARTY GO</title><link rel="stylesheet" href="/css/style.css"></head>
+<body><main class="page admin-page">
+<div class="eyebrow">УПРАВЛЕНИЕ ВЕЧЕРИНКОЙ</div><h1>АДМИНКА</h1>
+<section class="panel admin-network">
+<h2>🌐 АДРЕС ВХОДА</h2>
+<p>QR для игроков показывается <b>только на главном LIVE-экране со статистикой</b>. Здесь ты только выбираешь адрес, который будет зашит в этот QR.</p>
+<label for="hostSelect">НАЙДЕННЫЕ IP-АДРЕСА</label>
+<select id="hostSelect"></select>
+<label for="host">IP / ИМЯ / ПОЛНЫЙ HTTPS-АДРЕС</label>
+<input id="host" placeholder="192.168.0.143 или https://example.trycloudflare.com">
+<button id="saveNetwork">СОХРАНИТЬ И ОБНОВИТЬ QR</button>
+<p id="networkStatus" class="admin-status"></p>
+<p class="admin-note">Для встроенного live-сканера камеры на iPhone браузеру нужен HTTPS. Если используешь бесплатный HTTPS-туннель, вставь сюда его полный адрес — QR на LIVE-экране обновится сразу.</p>
+</section>
+<p><a href="/">← Вход игрока</a> · <a href="/screen.html">📺 Главный экран</a></p>
+<section class="panel"><h2>👾 QR-КОДЫ СУЩЕСТВ</h2><p>Здесь автоматически собраны все карточки игры и их QR. Основные предметы разделены по редкости, а специальные карты вынесены в бонусы. QR входа здесь не показывается.</p><div id="qrList" class="collection"></div></section>
+<button id="reset" class="danger">СБРОСИТЬ ИГРУ</button>
+</main><script src="/js/admin.js"></script></body></html>
