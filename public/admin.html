@@ -13,7 +13,19 @@
 <p id="networkStatus" class="admin-status"></p>
 <p class="admin-note">Для встроенного live-сканера камеры на iPhone браузеру нужен HTTPS. Если используешь бесплатный HTTPS-туннель, вставь сюда его полный адрес — QR на LIVE-экране обновится сразу.</p>
 </section>
+<section class="panel admin-theme-panel">
+<h2>🎨 СТИЛЬ ВЕЧЕРИНКИ</h2>
+<p>Меняет оформление у игроков, коллекции и LIVE-экрана. Игровые карточки, QR и правила остаются теми же.</p>
+<label for="themeSelect">ТЕМА</label>
+<select id="themeSelect">
+  <option value="2016">2К16 — неон и интернет 2016</option>
+  <option value="books">Книжный вечер — осень, кофе и книги</option>
+</select>
+<button id="saveTheme">ПРИМЕНИТЬ СТИЛЬ</button>
+<p id="themeStatus" class="admin-status"></p>
+<div class="theme-preview"><div class="theme-swatch theme-swatch-2016"><b>2К16</b><span>неон</span></div><div class="theme-swatch theme-swatch-books"><b>BOOKS</b><span>☕ 🍂 📖</span></div></div>
+</section>
 <p><a href="/">← Вход игрока</a> · <a href="/screen.html">📺 Главный экран</a></p>
 <section class="panel"><h2>👾 QR-КОДЫ СУЩЕСТВ</h2><p>Здесь автоматически собраны все карточки игры и их QR. Основные предметы разделены по редкости, а специальные карты вынесены в бонусы. QR входа здесь не показывается.</p><div id="qrList" class="collection"></div></section>
 <button id="reset" class="danger">СБРОСИТЬ ИГРУ</button>
-</main><script src="/js/admin.js"></script></body></html>
+</main><script src="/socket.io/socket.io.js"></script><script src="/js/theme.js"></script><script src="/js/admin.js"></script></body></html>

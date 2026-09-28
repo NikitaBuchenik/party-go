@@ -1,4 +1,4 @@
-const $=s=>document.querySelector(s); const socket=io();
+const $=s=>document.querySelector(s); const socket=window.partyGoSocket || (window.partyGoSocket=io());
 function refreshJoin(version){ const q=$('#screenJoinQr'); if(q) q.src=`/qr/join.png?v=${version||Date.now()}`; }
 function render(s){
  $('#online').textContent=s.online; $('#captures').textContent=s.totalCaptures; $('#unique').textContent=`${s.uniqueCaught}/${s.totalCreatures}`; $('#top').textContent=s.players[0]?.name||'—';

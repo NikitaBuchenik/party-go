@@ -27,7 +27,8 @@ const collectibles = creatures.filter(c => c.type !== 'bonus');
 let state = JSON.parse(fs.readFileSync(STATE_FILE, 'utf8'));
 let config = fs.existsSync(CONFIG_FILE)
   ? JSON.parse(fs.readFileSync(CONFIG_FILE, 'utf8'))
-  : { host: '', port: 3000 };
+  : { host: '', port: 3000, theme: '2016' };
+config.theme = config.theme === 'books' ? 'books' : '2016';
 const onlineSockets = new Map();
 let joinQrVersion = Date.now();
 let joinUrl = '';
@@ -109,6 +110,7 @@ app.get('/api/creatures', (_, res) => res.json(creatures));
 app.get('/api/stats', (_, res) => res.json(getStats()));
 app.get('/api/network', (_, res) => res.json({ interfaces: getIPv4s(), current: String(config.host || pickIP()), port: Number(config.port) || 3000, url: joinUrl, qrVersion: joinQrVersion }));
 app.get('/api/join-config', (_, res) => res.json({ host: String(config.host || pickIP()), port: Number(config.port) || 3000, url: joinUrl, qrVersion: joinQrVersion }));
+app.get('/api/theme', (_, res) => res.json({ theme: config.theme }));
 
 app.post('/api/join-config', async (req, res) => {
   const host = String(req.body.host || '').trim();
@@ -118,6 +120,15 @@ app.post('/api/join-config', async (req, res) => {
   const join = await generateJoinQR();
   io.emit('joinConfig', join);
   res.json({ ok: true, ...join });
+});
+
+app.post('/api/theme', (req, res) => {
+  const theme = String(req.body.theme || '').trim();
+  if (!['2016', 'books'].includes(theme)) return res.status(400).json({ error: 'Неизвестный стиль' });
+  config.theme = theme;
+  saveConfig();
+  io.emit('themeConfig', { theme });
+  res.json({ ok: true, theme });
 });
 
 app.post('/api/join', (req, res) => {
@@ -175,6 +186,7 @@ io.on('connection', socket => {
   socket.on('disconnect', () => { onlineSockets.delete(socket.id); broadcast(io); });
   socket.emit('stats', getStats());
   socket.emit('joinConfig', { host: String(config.host || pickIP()), port: Number(config.port) || 3000, url: joinUrl, version: joinQrVersion });
+  socket.emit('themeConfig', { theme: config.theme });
 });
 
 const PORT = Number(process.env.PORT) || Number(config.port) || 3000;
